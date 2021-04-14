@@ -1,2 +1,3 @@
-## node_vue项目
-后台项目，node + mysql
+#### 项目简介
+  服务端 serve + 后台 vite-app
+  vite + vue3 + ts
