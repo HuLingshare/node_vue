@@ -42,7 +42,7 @@ export default defineComponent({
   },
   setup: () => {
     const count = ref(0)
-    axios.get('/getOneList?id=0',{}, (res) => {
+    axios.get('http://localhost:3010/getOneList?id=0', (res) => {
       console.log(res)
     })
     return { count }
