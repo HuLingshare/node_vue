@@ -27,7 +27,19 @@ function exitFullscreen():void {
 //   }
 }
 
+// 判断页面是否在移动端浏览页面
+function isMobileFun(){
+  let info = navigator.userAgent;
+  let agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPod", "iPad"];
+  for(let i = 0; i < agents.length; i++){
+      if(info.indexOf(agents[i]) >= 0) return true;
+  }
+  let width = window.innerWidth || document.documentElement.clientWidth
+  if (width < 1000) { return true }
+  return false;
+}
 export {
   fullScreen,
-  exitFullscreen
+  exitFullscreen,
+  isMobileFun
 }

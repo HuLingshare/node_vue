@@ -3,7 +3,7 @@
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
     {{list}}
-    <button @click="changeList">changeList</button>
+    <button @click="changeList">changeList vite update</button>
   </div>
 </template>
 

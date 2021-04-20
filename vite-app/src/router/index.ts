@@ -16,18 +16,6 @@ export const routes: Array<RouteRecordRaw> = [
     }
   },
   {
-    path: '/404',
-    name: '404',
-    // route level code-splitting
-    // this generates a separate chunk (login.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "login" */ '../views/404.vue'),
-    meta: {
-      show: false,
-      icon: ''
-    }
-  },
-  {
     path: '/',
     component: Layout,
     redirect: '/home',
@@ -111,6 +99,27 @@ export const routes: Array<RouteRecordRaw> = [
       }
     }]
   },
+  {
+    path: '/404',
+    name: '404',
+    // route level code-splitting
+    // this generates a separate chunk (login.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "login" */ '../views/404.vue'),
+    meta: {
+      show: false,
+      icon: ''
+    }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/404',
+    name: 'notFound',
+    meta: {
+      show: false,
+      icon: ''
+    }
+  }
 ]
 
 

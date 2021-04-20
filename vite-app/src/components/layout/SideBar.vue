@@ -8,26 +8,20 @@
             <user-outlined />
             <span>{{ $t('menu.'+item.name) }}</span>
           </template>
-          <a-menu-item v-for="it in item.children" :key="it.name">
+          <a-menu-item v-for="it in item.children" :key="it.name" @click="navTo(resolvePath(item.path, it.path))">
             <user-outlined />
-            <span>
-              <router-link class="nav-text" :to="resolvePath(item.path, it.path)">{{ $t('menu.'+it.name) }}</router-link>
-            </span>
+            <span class="nav-text" :to="resolvePath(item.path, it.path)">{{ $t('menu.'+it.name) }}</span>
           </a-menu-item>
         </a-sub-menu>
         <!-- 只有一个子路由 -->
-        <a-menu-item v-else-if="item.children && item.children.length === 1" :key="item.children[0].name">
+        <a-menu-item v-else-if="item.children && item.children.length === 1" :key="item.children[0].name" @click="navTo(item.path)">
           <user-outlined />
-          <span>
-            <router-link class="nav-text" :to="item.path">{{ $t('menu.'+item.name) }}</router-link>
-          </span>
+          <span class="nav-text" :to="item.path">{{ $t('menu.'+item.name) }}</span>
         </a-menu-item>
         <!-- 没有子路由 -->
-        <a-menu-item v-else :key="item.name">
+        <a-menu-item v-else :key="item.name" @click="navTo(item.path)">
           <user-outlined />
-          <span>
-            <router-link class="nav-text" :to="item.path">{{ $t('menu.'+item.name) }}</router-link>
-          </span>
+          <span class="nav-text" :to="item.path">{{ $t('menu.'+item.name) }}</span>
         </a-menu-item>
       </template>
     </a-menu>
@@ -38,13 +32,13 @@ import {
   UserOutlined,
 } from '@ant-design/icons-vue';
 import { defineComponent, ref, computed } from 'vue';
-import { routes } from '/@/router'
-import { useRoute } from 'vue-router'
+import { routes } from '@/router'
+import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
 export default defineComponent({
   components: {
-    UserOutlined,
+    UserOutlined
   },
   setup() {
     const currentName = useRoute().name as string
@@ -53,13 +47,17 @@ export default defineComponent({
     const currentParentPath = '/'+currentPath.split('/')[1]
     const openKeys = ref<string[]>([currentParentPath])
     const store = useStore()
-    const collapsed = computed(() => { return store.state.collapsed })
+    const collapsed = computed(() => { return !store.state.isMobile && store.state.collapsed })
     const canShowRoutes:any[] = routes.filter((ele) => ele?.meta?.show)
     function multiChildrenPath(item:any):boolean {
       return item?.meta?.show && (!item.children || item.children.length > 1)
     }
     function resolvePath(p1:string, p2:string):string {
       return `${p1}/${p2}`
+    }
+    const router = useRouter()
+    function navTo(path:string):void {
+      router.push({ path })
     }
     return {
       collapsed,
@@ -68,7 +66,8 @@ export default defineComponent({
       resolvePath,
       selectedKeys,
       openKeys,
-      currentName
+      currentName,
+      navTo
     };
 
   }

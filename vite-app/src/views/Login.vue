@@ -66,7 +66,6 @@ export default defineComponent({
   setup() {
     const route = useRoute() // 路由
     const router = useRouter() // 当前路由
-
     const formRef = ref();
     const formState: UnwrapRef<FormState> = reactive({
       username: 'admin',
@@ -105,7 +104,6 @@ export default defineComponent({
     };
     const store = useStore()
     const canSubmit = (): void => {
-      debugger
       store.dispatch('handlerSetHasLogin', true)
       let toPath = (route.query?.redirect || '/').toString()
       router.push({

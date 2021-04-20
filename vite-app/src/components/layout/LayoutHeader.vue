@@ -1,19 +1,24 @@
 <template>
     <a-layout-header class="layout-header">
-      <span @click="toggleCollapsed">
-        <MenuUnfoldOutlined v-if="collapsed" />
-        <MenuFoldOutlined v-else />
-      </span>
+      <div class="left">
+        <span @click="toggleCollapsed" class="fold-btn">
+          <MenuUnfoldOutlined v-if="collapsed" />
+          <MenuFoldOutlined v-else />
+        </span>
+        <Breadcrumb class="ml10"/>
+      </div>
       <div class="right">
         <!-- 语言切换 + 全屏 + 个人信息 + 配置 + 搜索 + 通知 -->
-        <SwitchLanguage />
-        <FullScreen />
+        <SwitchLanguage class="ml10"/>
+        <FullScreen class="ml10"/>
       </div>
     </a-layout-header>
 </template>
 <script lang="ts">
+import Breadcrumb from '/@/components/layout/Breadcrumb.vue'
 import FullScreen from '/@/components/layout/FullScreen.vue'
 import SwitchLanguage from '/@/components/layout/SwitchLanguage.vue'
+import SvgIcon from '@/components/icons/SvgIcon.vue' // svg精灵图组件
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
 import { defineComponent, computed } from 'vue';
 import { useStore } from 'vuex'
@@ -23,13 +28,18 @@ export default defineComponent({
     SwitchLanguage,
     FullScreen,
     MenuFoldOutlined,
-    MenuUnfoldOutlined
+    MenuUnfoldOutlined,
+    Breadcrumb,
+    SvgIcon
   },
   setup() {
     const store = useStore()
     const collapsed = computed(() => store.state.collapsed)
+    const isMobile = computed(() => store.state.isMobile)
+    const mobileShowSideBar = computed(() => store.state.mobileShowSideBar)
     function toggleCollapsed():void{
-      store.dispatch('handlerSetCollapsed', !collapsed.value)
+      isMobile.value && store.commit('SET_MOBILESHOWSIDEBAR', !mobileShowSideBar.value)
+      !isMobile.value && store.dispatch('handlerSetCollapsed', !collapsed.value)
     }
     return {
       collapsed,
@@ -46,10 +56,18 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  .right {
-    > div, > span {
-      margin-left: 10px;
-    }
+  .left {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  :deep(.ml10) {
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+  .fold-btn {
+    cursor: pointer;
   }
 }
 </style>

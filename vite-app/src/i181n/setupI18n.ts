@@ -1,4 +1,5 @@
-import { createI18n } from 'vue-i18n'
+// import { createI18n } from 'vue-i18n'
+import { createI18n } from 'vue-i18n/dist/vue-i18n.cjs.js'
 const messages = {
   en: {
     language: {
@@ -23,7 +24,8 @@ const messages = {
     layout: {
       header: {
         tooltipExitFull: 'Exit Full Screen',
-        tooltipEntryFull: 'Full Screen'
+        tooltipEntryFull: 'Full Screen',
+        fresh: 'Fresh'
       }
     }
   },
@@ -50,7 +52,8 @@ const messages = {
     layout: {
       header: {
         tooltipExitFull: '退出全屏',
-        tooltipEntryFull: '全屏'
+        tooltipEntryFull: '全屏',
+        fresh: '刷新'
       }
     }
   }

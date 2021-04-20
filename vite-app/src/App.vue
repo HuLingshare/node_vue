@@ -38,16 +38,18 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   > div {
     width: 100%;
     min-height: 100vh;
   }
 }
 .router-fade-enter-active, .router-fade-leave-active {
-    transition: opacity .3;
+    transition: opacity .2s ease;
 }
 .router-fade-enter, .router-fade-leave-active {
     opacity: 0;
 }
+
 </style>
