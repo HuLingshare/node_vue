@@ -1,63 +1,76 @@
 <template>
   <div class="tabs-wrap">
     <div class="left">
-      left
+      <a-tabs
+        type="editable-card"
+        tab-position="top"
+        size="small"
+        v-model:activeKey="activeKey"
+        :hide-add="true"
+        :style="{ height: '30px' }"
+        @change="changePane"
+        @edit="removePane"
+      >
+        <a-tab-pane v-for="(pane, index) in cachePagesList" :key="index" :closable="pane.closable">
+          <template #tab>
+            <a-dropdown class="block" :trigger="['contextmenu']" @visibleChange="visibleChange">
+              <span>{{ $t('menu.'+pane.name) }}</span>
+              <template #overlay>
+                <DropDownMenu  v-if="dropdownMenuVisible" :pane="pane" :index-val="index"/>
+              </template>
+            </a-dropdown>
+          </template>
+        </a-tab-pane> 
+      </a-tabs>
     </div>
     <div class="right">
-      <a-dropdown class="block">
-        <DownOutlined/>
-         <template #overlay>
-           <a-menu>
-              <a-menu-item v-for="(item, index) in rightClickMenus" :key="index">
-               <svg-icon name="visit-count" size="18"/> {{ item.text }}
-              </a-menu-item>
-           </a-menu>
-         </template>
-      </a-dropdown>
       <RedoOutlined class="block" :title="$t('layout.header.fresh')"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import { RedoOutlined, DownOutlined } from '@ant-design/icons-vue'
 import SvgIcon from '../icons/SvgIcon.vue'
+import DropDownMenu from './DropDown.vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'Tabs',
   components: {
     DownOutlined,
     RedoOutlined,
-    SvgIcon
+    SvgIcon,
+    DropDownMenu
   },
   setup() {
-    const disabledFresh = false
-    const disabledCurClose = false
-    const disabledLeftClose = false
-    const disabledRightClose = false
-    const disabledOthersClose = false
-    const disabledAllClose = false
-    const rightClickMenus = [{
-      text: '重新加载',
-      disabled: disabledFresh
-    }, {
-      text: '关闭此标签页',
-      disabled: disabledCurClose
-    }, {
-      text: '关闭左侧标签页',
-      disabled: disabledLeftClose
-    }, {
-      text: '关闭右侧标签页',
-      disabled: disabledRightClose
-    }, {
-      text: '关闭其他标签页',
-      disabled: disabledOthersClose
-    }, {
-      text: '关闭全部标签页',
-      disabled: disabledAllClose
-    }]
+    const router = useRouter()
+    const store = useStore()
+    const activeKey = computed(() => store.getters.curPageKey)
+    const cachePagesList = computed(() => store.getters.cachePagesList)
+    const changePane = (activekey: string) => {
+      const path = cachePagesList.value[activekey].path
+      router.push({ path })
+    }
+    const removePane = (targetkey:nubmer) => {
+      if (activeKey.value === targetkey) { //删除当前活动tab
+        const path = cachePagesList.value[targetkey - 1].path
+        router.push({ path })
+      }
+      store.commit('SET_CACHEPAGES_DEL', targetkey) // 修改chachePages
+    }
+    const dropdownMenuVisible = ref(true)
+    let visibleChange = (visible) => {
+      dropdownMenuVisible.value = visible
+    }
     return {
-      rightClickMenus
+      changePane,
+      removePane,
+      activeKey,
+      cachePagesList,
+      visibleChange,
+      dropdownMenuVisible
     }
   }
 })
@@ -69,9 +82,16 @@ export default defineComponent({
   background: #fff;
   border-top: 1px solid #ddd;
   display: flex;
+  flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  .left {
+    width: calc(~'100% - 50px');
+    flex:1;
+  }
   .right {
+    width: 30px;
+    flex: none;
     .block {
       width: 30px;
       height: 30px;
@@ -80,5 +100,21 @@ export default defineComponent({
       cursor: pointer;
     }
   }
+}
+:deep(.ant-tabs-bar) {
+  border: none;
+}
+:deep(.ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-nav-container) {
+  height: 30px;
+}
+:deep(.ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-tab) {
+  height: 30px;
+  line-height: 28px;
+}
+:deep(.ant-tabs-nav .ant-tabs-tab-active) {
+  font-weight: normal;
+}
+:deep(.ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-tab-active) {
+  border-bottom:1px solid #f0f0f0;
 }
 </style>

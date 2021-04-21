@@ -11,6 +11,7 @@ const messages = {
       name: 'name'
     },
     menu: {
+      Workbench: 'Workbench',
       Home: 'Home',
       OrdersCenter: 'Orders Center',
       OrdersList: 'Orders List',
@@ -39,6 +40,7 @@ const messages = {
       name: 'xingming'
     },
     menu: {
+      Workbench: '工作台',
       Home: '首页',
       OrdersCenter: '订单管理',
       OrdersList: '订单列表',

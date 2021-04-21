@@ -8,7 +8,6 @@
       <a-layout-content class="layout-content">
         <div class="content-container">
           <div class="content-main">
-            {{isMobile}}
             <router-view v-slot="{ Component, route }">
               <transition :name="getTransitionName({route})" mode="out-in">
                 <component :is="Component" key="route.fullPath" />

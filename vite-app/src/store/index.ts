@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import { isMobileFun } from '@/utils/common'
+import tabs from './modules/tabs'
 
 export default createStore({
   state: {
@@ -32,5 +33,6 @@ export default createStore({
     }
   },
   modules: {
+    tabs
   }
 })

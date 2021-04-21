@@ -19,9 +19,9 @@ export const routes: Array<RouteRecordRaw> = [
     path: '/',
     component: Layout,
     redirect: '/home',
-    name: 'Home',
+    name: 'Workbench',
     meta: {
-      show: true,
+      show: false,
       icon: 'home'
     },
     children: [{
