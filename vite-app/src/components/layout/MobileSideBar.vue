@@ -22,7 +22,7 @@ export default defineComponent({
   setup() {
     const store = useStore()
     const mobileShowSideBar = computed(() => store.state.mobileShowSideBar)
-    const closeDrawer = (e) => {
+    const closeDrawer = () => {
       store.commit('SET_MOBILESHOWSIDEBAR', !mobileShowSideBar.value)
     }
     return {

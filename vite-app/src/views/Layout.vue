@@ -63,7 +63,7 @@ export default defineComponent({
 }
 .layout-content {
   position: relative;
-  height: calc(100vh - 64px);
+  height: calc(100vh - 94px);
   overflow-y: auto;
 }
 .content-container {
@@ -75,6 +75,6 @@ export default defineComponent({
 .content-main {
   margin: 20px 15px 0;
   text-align: center;
-  min-height: calc(100vh - 174px);
+  min-height: calc(100vh - 204px);
 }
 </style>

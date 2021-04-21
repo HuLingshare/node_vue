@@ -16,7 +16,7 @@
             <a-dropdown class="block" :trigger="['contextmenu']" @visibleChange="visibleChange">
               <span>{{ $t('menu.'+pane.name) }}</span>
               <template #overlay>
-                <DropDownMenu  v-if="dropdownMenuVisible" :pane="pane" :index-val="index"/>
+                <DropDownMenu  v-if="dropdownMenuVisible" :pane="pane" :index-val="Number(index)"/>
               </template>
             </a-dropdown>
           </template>
@@ -53,9 +53,10 @@ export default defineComponent({
       const path = cachePagesList.value[activekey].path
       router.push({ path })
     }
-    const removePane = (targetkey:nubmer) => {
+    const removePane = (targetkey) => {
       if (activeKey.value === targetkey) { //删除当前活动tab
         const path = cachePagesList.value[targetkey - 1].path
+        store.commit('SET_CURPAGE', path)
         router.push({ path })
       }
       store.commit('SET_CACHEPAGES_DEL', targetkey) // 修改chachePages
@@ -85,6 +86,7 @@ export default defineComponent({
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #ddd;
   .left {
     width: calc(~'100% - 50px');
     flex:1;

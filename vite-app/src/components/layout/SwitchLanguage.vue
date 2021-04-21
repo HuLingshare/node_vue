@@ -18,9 +18,9 @@
 
 <script lang="ts">
 import { DownOutlined } from '@ant-design/icons-vue'
-import LanguageIcon from '/@/components/icons/components/Language.vue'
+import LanguageIcon from '@/components/icons/components/Language.vue'
 import { defineComponent, ref } from 'vue'
-import userI18n from '/@/i181n/setupI18n'
+import userI18n from '@/i181n/setupI18n'
 interface str {
   key:string
 }

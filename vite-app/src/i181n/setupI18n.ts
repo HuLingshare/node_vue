@@ -1,5 +1,5 @@
-// import { createI18n } from 'vue-i18n'
-import { createI18n } from 'vue-i18n/dist/vue-i18n.cjs.js'
+import { createI18n } from 'vue-i18n'
+// import { createI18n } from 'vue-i18n/dist/vue-i18n.cjs.js'
 const messages = {
   en: {
     language: {

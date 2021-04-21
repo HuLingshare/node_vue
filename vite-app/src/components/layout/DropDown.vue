@@ -18,7 +18,6 @@ export default defineComponent({
   },
   props: {
     indexVal: {
-      type: Number,
       default: -1
     },
     pane: {

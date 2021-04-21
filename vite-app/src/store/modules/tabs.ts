@@ -29,6 +29,9 @@ const tabs = {
     curPageName(state, getters):string {
       const arr = getters.cachePagesList
       const key = getters.curPageKey
+      if (key === -1) {
+        return arr[0].name
+      }
       return arr[key].name
     }
   },
