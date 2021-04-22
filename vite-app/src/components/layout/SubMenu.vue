@@ -8,7 +8,7 @@
     <template v-for="item in menuInfo.children">
       <template v-if="!item.children">
         <a-menu-item :key="item.name" @click="navTo(resolvePath(menuInfo.path, item.path, item), item.name)">
-          <IconFont :iconName="item.meta.icon"/>
+          <!-- <IconFont :iconName="item.meta.icon"/> -->
           <span>{{ $t('menu.'+item.name) }}</span>
         </a-menu-item>
       </template>

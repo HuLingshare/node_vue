@@ -12,7 +12,7 @@ export const routes: Array<RouteRecordRaw> = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
     meta: {
-      show: true,
+      show: false,
       icon: 'login'
     }
   },
