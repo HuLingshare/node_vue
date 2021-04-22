@@ -27,6 +27,7 @@ export default defineComponent({
         document.title = title
         const path = route.fullPath
         const key = cachePagesList.value.findIndex(ele => ele.path === path)
+        if (!route.meta.show) { return }
         if (key === -1 && path !== '/') {
           const name = route.name
           store.commit('SET_CACHEPAGES', { path, name })

@@ -21,18 +21,23 @@
       size: {
         type: [Number, String],
         default: 16,
+      },
+      color: {
+        type: String,
+        default: '#333'
       }
     },
     setup(props) {
       const symbolId = computed(() => `#${props.prefix}-${props.name}`);
       const getStyle = computed(
         () => {
-          const { size } = props;
+          const { size, color } = props;
           let s = `${size}`;
           s = `${s.replace('px', '')}px`;
           return {
             width: s,
             height: s,
+            fill: color
           };
         }
       )

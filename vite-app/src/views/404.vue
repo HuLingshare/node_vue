@@ -42,10 +42,10 @@
           <div class="text-404__info">
             Please check that the URL you entered is correct, or click the button below to return to the homepage.
           </div>
-          <a
-            href=""
+          <span
+            @click="navToHome"
             class="text-404__return-home"
-          >Back to home</a>
+          >Back to home</span>
         </div>
       </div>
     </div>
@@ -54,11 +54,17 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'Page404',
   setup() {
     const message = ref('404 Page Not Found')
+    const router = useRouter()
+    function navToHome(path:string):void {
+      router.push({ path: '/home' })
+    }
     return {
+      navToHome,
       message
     }
   }

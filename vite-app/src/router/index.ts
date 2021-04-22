@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Layout from '../views/Layout.vue'
+import YBLayout from '../views/YBLayout.vue'
 import Home from '../views/Home.vue'
 
 export const routes: Array<RouteRecordRaw> = [
@@ -11,8 +12,8 @@ export const routes: Array<RouteRecordRaw> = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
     meta: {
-      show: false,
-      icon: ''
+      show: true,
+      icon: 'login'
     }
   },
   {
@@ -35,70 +36,147 @@ export const routes: Array<RouteRecordRaw> = [
     }]
   },
   {
-    path: '/ordersCenter',
-    name: 'OrdersCenter',
+    path: '/yb',
+    name: 'yb',
     component: Layout,
-    redirect: '/ordersCenter/ordersList',
+    redirect: '/yb/ordersCenter/ordersList',
     meta: {
       show: true,
-      icon: 'order'
+      icon: ''
     },
-    children: [{
-      path: 'ordersList',
-      name: 'OrdersList',
-      component: () => import(/* webpackChunkName: "UploadImagesIndex" */ '../views/OrdersList.vue'),
-      meta: {
-        show: true,
-        icon: ''
+    children: [
+      {
+        path: 'ordersCenter',
+        name: 'OrdersCenter',
+        component: YBLayout,
+        redirect: '/yb/ordersCenter/ordersList',
+        meta: {
+          show: true,
+          icon: 'order'
+        },
+        children: [{
+          path: 'ordersList',
+          name: 'OrdersList',
+          component: () => import(/* webpackChunkName: "UploadImagesIndex" */ '../views/OrdersList.vue'),
+          meta: {
+            show: true,
+            icon: ''
+          }
+        }]
+      },
+      {
+        path: 'goodsCenter',
+        name: 'GoodsCenter',
+        component: YBLayout,
+        redirect: '/yb/goodsCenter/goodsList',
+        meta: {
+          show: true,
+          icon: 'goods'
+        },
+        children: [{
+          path: 'goodsList',
+          name: 'GoodsList',
+          component: () => import(/* webpackChunkName: "GoodsList" */ '../views/GoodsList.vue'),
+          meta: {
+            show: true,
+            icon: 'goods'
+          }
+        },{
+          path: 'goodsUpload',
+          name: 'GoodsUpload',
+          component: () => import(/* webpackChunkName: "GoodsList" */ '../views/GoodsUpload.vue'),
+          meta: {
+            show: true,
+            icon: 'goods'
+          }
+        }]
+      },
+      {
+        path: 'userCenter',
+        name: 'UserCenter',
+        component: YBLayout,
+        redirect: '/yb/userCenter/userInfo',
+        meta: {
+          show: true,
+          icon: 'user'
+        },
+        children: [{
+          path: 'userInfo',
+          name: 'UserInfo',
+          component: () => import(/* webpackChunkName: "UserInfo" */ '../views/UserInfo.vue'),
+          meta: {
+            show: true,
+            icon: 'user'
+          }
+        }]
       }
-    }]
+    ]
   },
-  {
-    path: '/goodsCenter',
-    name: 'GoodsCenter',
-    component: Layout,
-    redirect: '/goodsCenter/goodsList',
-    meta: {
-      show: true,
-      icon: 'goods'
-    },
-    children: [{
-      path: 'goodsList',
-      name: 'GoodsList',
-      component: () => import(/* webpackChunkName: "GoodsList" */ '../views/GoodsList.vue'),
-      meta: {
-        show: true,
-        icon: 'goods'
-      }
-    },{
-      path: 'goodsUpload',
-      name: 'GoodsUpload',
-      component: () => import(/* webpackChunkName: "GoodsList" */ '../views/GoodsUpload.vue'),
-      meta: {
-        show: true,
-        icon: 'goods'
-      }
-    }]
-  },
-  {
-    path: '/userCenter',
-    name: 'UserCenter',
-    component: Layout,
-    redirect: '/userCenter/userInfo',
-    meta: {
-      show: true,
-      icon: 'user'
-    },
-    children: [{
-      path: 'userInfo',
-      name: 'UserInfo',
-      component: () => import(/* webpackChunkName: "UserInfo" */ '../views/UserInfo.vue'),
-      meta: {
-        show: true,
-        icon: 'user'
-      }
-    }]
-  },
+  // {
+  //   path: '/ordersCenter',
+  //   name: 'OrdersCenter',
+  //   component: Layout,
+  //   redirect: '/ordersCenter/ordersList',
+  //   meta: {
+  //     show: true,
+  //     icon: 'order'
+  //   },
+  //   children: [{
+  //     path: 'ordersList',
+  //     name: 'OrdersList',
+  //     component: () => import(/* webpackChunkName: "UploadImagesIndex" */ '../views/OrdersList.vue'),
+  //     meta: {
+  //       show: true,
+  //       icon: ''
+  //     }
+  //   }]
+  // },
+  // {
+  //   path: '/goodsCenter',
+  //   name: 'GoodsCenter',
+  //   component: Layout,
+  //   redirect: '/goodsCenter/goodsList',
+  //   meta: {
+  //     show: true,
+  //     icon: 'goods'
+  //   },
+  //   children: [{
+  //     path: 'goodsList',
+  //     name: 'GoodsList',
+  //     component: () => import(/* webpackChunkName: "GoodsList" */ '../views/GoodsList.vue'),
+  //     meta: {
+  //       show: true,
+  //       icon: 'goods'
+  //     }
+  //   },{
+  //     path: 'goodsUpload',
+  //     name: 'GoodsUpload',
+  //     component: () => import(/* webpackChunkName: "GoodsList" */ '../views/GoodsUpload.vue'),
+  //     meta: {
+  //       show: true,
+  //       icon: 'goods'
+  //     }
+  //   }]
+  // },
+  // {
+  //   path: '/userCenter',
+  //   name: 'UserCenter',
+  //   component: Layout,
+  //   redirect: '/userCenter/userInfo',
+  //   meta: {
+  //     show: true,
+  //     icon: 'user'
+  //   },
+  //   children: [{
+  //     path: 'userInfo',
+  //     name: 'UserInfo',
+  //     component: () => import(/* webpackChunkName: "UserInfo" */ '../views/UserInfo.vue'),
+  //     meta: {
+  //       show: true,
+  //       icon: 'user'
+  //     }
+  //   }]
+  // },
   {
     path: '/404',
     name: '404',
