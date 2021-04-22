@@ -42,7 +42,7 @@ export const routes: Array<RouteRecordRaw> = [
     redirect: '/yb/ordersCenter/ordersList',
     meta: {
       show: true,
-      icon: ''
+      icon: 'yb'
     },
     children: [
       {
@@ -52,7 +52,7 @@ export const routes: Array<RouteRecordRaw> = [
         redirect: '/yb/ordersCenter/ordersList',
         meta: {
           show: true,
-          icon: 'order'
+          icon: 'order-center'
         },
         children: [{
           path: 'ordersList',
@@ -60,7 +60,7 @@ export const routes: Array<RouteRecordRaw> = [
           component: () => import(/* webpackChunkName: "UploadImagesIndex" */ '../views/OrdersList.vue'),
           meta: {
             show: true,
-            icon: ''
+            icon: 'order-list'
           }
         }]
       },
@@ -71,7 +71,7 @@ export const routes: Array<RouteRecordRaw> = [
         redirect: '/yb/goodsCenter/goodsList',
         meta: {
           show: true,
-          icon: 'goods'
+          icon: 'goods-center'
         },
         children: [{
           path: 'goodsList',
@@ -79,7 +79,7 @@ export const routes: Array<RouteRecordRaw> = [
           component: () => import(/* webpackChunkName: "GoodsList" */ '../views/GoodsList.vue'),
           meta: {
             show: true,
-            icon: 'goods'
+            icon: 'goods-list'
           }
         },{
           path: 'goodsUpload',
@@ -87,7 +87,7 @@ export const routes: Array<RouteRecordRaw> = [
           component: () => import(/* webpackChunkName: "GoodsList" */ '../views/GoodsUpload.vue'),
           meta: {
             show: true,
-            icon: 'goods'
+            icon: 'goods-upload'
           }
         }]
       },
@@ -98,7 +98,7 @@ export const routes: Array<RouteRecordRaw> = [
         redirect: '/yb/userCenter/userInfo',
         meta: {
           show: true,
-          icon: 'user'
+          icon: 'user-center'
         },
         children: [{
           path: 'userInfo',

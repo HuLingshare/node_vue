@@ -10,7 +10,7 @@
       <template v-for="item in canShowRoutes">
         <template v-if="!item.children">
           <a-menu-item :key="item.name" @click="navTo(item.path, item.name)">
-            <span class="icon-font"><SvgIcon :name="item.meta.icon" color="#eee"/></span>
+            <IconFont :iconName="item.meta.icon"/>
             <span class="nav-text" :to="item.path">{{ $t('menu.'+item.name) }}</span>
           </a-menu-item>
         </template>
@@ -24,13 +24,7 @@
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue';
 import { routes } from '@/router'
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  PieChartOutlined,
-  MailOutlined,
-} from '@ant-design/icons-vue';
-import SvgIcon from '@/components/icons/SvgIcon.vue'
+import IconFont from '@/components/icons/Icon.vue'
 import SubMenu from './SubMenu.vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
@@ -63,11 +57,8 @@ export default defineComponent({
     };
   },
   components: {
-    SvgIcon,
-    'sub-menu': SubMenu,
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    PieChartOutlined,
+    IconFont,
+    'sub-menu': SubMenu
   },
 });
 </script>

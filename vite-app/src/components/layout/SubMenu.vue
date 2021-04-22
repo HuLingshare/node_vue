@@ -2,13 +2,13 @@
   <a-sub-menu :key="menuInfo.key" v-bind="$attrs">
     <template #title>
       <span>
-        <MailOutlined /><span>{{ $t('menu.'+menuInfo.name) }}</span>
+        <IconFont :iconName="menuInfo.meta.icon"/><span>{{ $t('menu.'+menuInfo.name) }}</span>
       </span>
     </template>
     <template v-for="item in menuInfo.children">
       <template v-if="!item.children">
         <a-menu-item :key="item.name" @click="navTo(resolvePath(menuInfo.path, item.path, item), item.name)">
-          <PieChartOutlined />
+          <IconFont :iconName="item.meta.icon"/>
           <span>{{ $t('menu.'+item.name) }}</span>
         </a-menu-item>
       </template>
@@ -20,12 +20,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  PieChartOutlined,
-  MailOutlined,
-} from '@ant-design/icons-vue';
+import IconFont from '@/components/icons/Icon.vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
@@ -59,10 +54,7 @@ export default defineComponent({
     };
   },
   components: {
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    PieChartOutlined,
-    MailOutlined
+    IconFont
   },
 });
 </script>

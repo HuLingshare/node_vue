@@ -41,7 +41,7 @@ const messages = {
       name: 'xingming'
     },
     menu: {
-      yb: '逸贝',
+      yb: '后台',
       Workbench: '工作台',
       Home: '首页',
       OrdersCenter: '订单管理',
