@@ -112,25 +112,25 @@ export const routes: Array<RouteRecordRaw> = [
       }
     ]
   },
-  // {
-  //   path: '/ordersCenter',
-  //   name: 'OrdersCenter',
-  //   component: Layout,
-  //   redirect: '/ordersCenter/ordersList',
-  //   meta: {
-  //     show: true,
-  //     icon: 'order'
-  //   },
-  //   children: [{
-  //     path: 'ordersList',
-  //     name: 'OrdersList',
-  //     component: () => import(/* webpackChunkName: "UploadImagesIndex" */ '../views/OrdersList.vue'),
-  //     meta: {
-  //       show: true,
-  //       icon: ''
-  //     }
-  //   }]
-  // },
+  {
+    path: '/components',
+    name: 'Components',
+    component: Layout,
+    redirect: '/components/modal',
+    meta: {
+      show: true,
+      icon: 'yb'
+    },
+    children: [{
+      path: 'modal',
+      name: 'Modal',
+      component: () => import(/* webpackChunkName: "UploadImagesIndex" */ '../views/Modal.vue'),
+      meta: {
+        show: true,
+        icon: ''
+      }
+    }]
+  },
   // {
   //   path: '/goodsCenter',
   //   name: 'GoodsCenter',

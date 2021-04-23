@@ -20,5 +20,6 @@ export default defineComponent({
   background: #eee;
   border-top: 1px solid #ddd;
   text-align: center;
+  z-index: 1;
 }
 </style>

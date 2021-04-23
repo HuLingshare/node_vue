@@ -7,14 +7,14 @@
 import { createFromIconfontCN } from '@ant-design/icons-vue';
 
 const IconFont = createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/font_2504035_pwfahuhsnhm.js',
+  scriptUrl: '//at.alicdn.com/t/font_2504035_8otj61jsecy.js',
 });
 export default {
   name: 'MyIconFont',
   props: {
     iconName: {
       type: String,
-      default: 'icon-dingdan'
+      default: 'order-list'
     },
     size: {
       type: Number,
@@ -28,7 +28,7 @@ export default {
   setup(props) {
     const { size, color } = props
     const style = {
-      fontSize: size + 'px',
+      fontSize: typeof size === 'number' ? size + 'px' : size,
       color: color
     }
     return {

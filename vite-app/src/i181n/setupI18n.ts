@@ -21,7 +21,9 @@ const messages = {
       GoodsUpload: 'Goods Upload',
       UserCenter: 'User Center',
       UserInfo: 'User Info',
-      Login: 'Login'
+      Login: 'Login',
+      Components: 'Components',
+      Modal: 'Modal'
     },
     layout: {
       header: {
@@ -51,7 +53,9 @@ const messages = {
       GoodsUpload: '商品上传',
       UserCenter: '用户中心',
       UserInfo: '用户信息',
-      Login: '登录'
+      Login: '登录',
+      Components: '组件',
+      Modal: '弹窗扩展'
     },
     layout: {
       header: {
